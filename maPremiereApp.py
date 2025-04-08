@@ -18,7 +18,7 @@ s = Spinbox(fenetre, from_=0, to=100)
 s.pack()
 
 value3 = StringVar()
-value3.set("adress mail")
+value3.set("adresse mail")
 entree3 = Entry(fenetre, textvariable=value3, width=30)
 entree3.pack()
 
@@ -40,7 +40,7 @@ def check_value():
        bouton.pack()
        bouton = Checkbutton(fenetre, text="avez vous de la famille, des amis travaillant actuellement ou non ici ? ")
        bouton.pack()
-       bouton = Checkbutton(fenetre, text="faites vous ce stage dans uncadre scolaire ?")
+       bouton = Checkbutton(fenetre, text="faites vous ce stage dans un cadre scolaire ?")
        bouton.pack()
        bouton = Button(fenetre, text="envoyer",command=lambda: callback())
     else:
@@ -54,7 +54,7 @@ def callback():
     if askyesno('Titre 1', 'Êtes-vous sûr de vouloir faire ça?'):
         showwarning('Titre 2', 'formulaire envoyé')
     else:
-        showinfo('Titre 3', 'annualion')
+        showinfo('Titre 3', 'annulation')
         showerror("Titre 4", "Aurevoir")
 
 Button(text='envoyer', command=callback).pack()
