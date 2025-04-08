@@ -1,10 +1,14 @@
-import pygame
 import sys
 import time
+import pygame
 
 pygame.init()
 
-# Constantes
+
+player_img = pygame.image.load("images/petit_base.png")
+player_img = pygame.transform.scale(player_img, (40, 40))
+
+
 tile_size = 40
 cols, rows = 24, 13
 width, height = cols * tile_size, rows * tile_size
@@ -69,7 +73,7 @@ font = pygame.font.SysFont(None, 60)
 
 def draw():
     screen.fill(WHITE)
-    pygame.draw.rect(screen, GREEN, player)
+    screen.blit(player_img, player)
     for plat in platforms:
         pygame.draw.rect(screen, BROWN, plat)
     for b in blocks:

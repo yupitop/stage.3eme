@@ -1,108 +1,130 @@
 import pygame
-import sys
 import random
+import sys
 
-# Initialisation de Pygame
 pygame.init()
 
-# Définition des constantes
-TAILLE_ECRAN = (288, 512)
-COULEUR_FOND = (135, 206, 235)
-COULEUR_OISEAU = (255, 255, 255)
-COULEUR_TUYAU = (0, 255, 0)
-COULEUR_SOL = (255, 0, 0)
-COULEUR_SCORE = (255, 255, 255)
+# Dimensions
+WIDTH, HEIGHT = 400, 600
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Flappy Bird")
+clock = pygame.time.Clock()
 
-# Création de la fenêtre
-fenetre = pygame.display.set_mode(TAILLE_ECRAN)
+# Couleurs
+WHITE = (255, 255, 255)
+FONT = pygame.font.SysFont("Arial", 40)
 
-# Création de l'oiseau
-oiseau_x = 50
-oiseau_y = 200
-oiseau_largeur = 20
-oiseau_hauteur = 20
-oiseau_vitesse_y = 0
+# Images
+bg_img = pygame.image.load("images/background.png")
+bg_img = pygame.transform.scale(bg_img, (WIDTH, HEIGHT))
 
-# Création des tuyaux
-tuyau_x = 300
-tuyau_y = 200
-tuyau_largeur = 50
-tuyau_hauteur = 200
-tuyau_vitesse_x = -2
+bird_img = pygame.image.load("images/bird.png")
+bird_img = pygame.transform.scale(bird_img, (40, 40))
 
-# Création du sol
-sol_x = 0
-sol_y = 450
-sol_largeur = 288
-sol_hauteur = 50
+pipe_img = pygame.image.load("images/pipe.png")
+pipe_img = pygame.transform.scale(pipe_img, (60, 400))
 
-# Création du score
+# Joueur
+bird = pygame.Rect(100, 250, 40, 40)
+gravity = 0
+jump_strength = -10
+
+# Tuyaux
+pipes = []
+PIPE_WIDTH = 60
+PIPE_GAP = 150
+pipe_timer = 0
+
+# Score
 score = 0
-font_score = pygame.font.SysFont("Arial", 24)
+game_over = False
 
-# Création des niveaux
-niveaux = [
-    {"tuyau_hauteur": 200, "tuyau_vitesse_x": -2},
-    {"tuyau_hauteur": 250, "tuyau_vitesse_x": -3},
-    {"tuyau_hauteur": 300, "tuyau_vitesse_x": -4},
-]
+def reset():
+    global bird, gravity, pipes, score, game_over
+    bird.y = 250
+    gravity = 0
+    pipes = []
+    score = 0
+    game_over = False
 
+def draw():
+    screen.blit(bg_img, (0, 0))
+    screen.blit(bird_img, bird)
+
+    for p in pipes:
+        if p["flipped"]:
+            screen.blit(p["surface"], (p["rect"].x, p["rect"].y))
+        else:
+            screen.blit(p["surface"], (p["rect"].x, p["rect"].y))
+
+    score_text = FONT.render(str(score), True, WHITE)
+    screen.blit(score_text, (WIDTH // 2 - score_text.get_width() // 2, 50))
+
+    if game_over:
+        over_text = FONT.render("Game Over", True, (255, 0, 0))
+        screen.blit(over_text, (WIDTH // 2 - over_text.get_width() // 2, HEIGHT // 2))
+
+    pygame.display.flip()
+
+def create_pipe():
+    height = random.randint(100, 400)
+    top_pipe = pygame.transform.flip(pipe_img, False, True)
+    bottom_pipe = pipe_img
+
+    pipes.append({
+        "rect": pygame.Rect(WIDTH, height - 400, PIPE_WIDTH, 400),
+        "surface": top_pipe,
+        "flipped": True,
+        "passed": False
+    })
+    pipes.append({
+        "rect": pygame.Rect(WIDTH, height + PIPE_GAP, PIPE_WIDTH, 400),
+        "surface": bottom_pipe,
+        "flipped": False,
+        "passed": False
+    })
 
 # Boucle principale
+reset()
 while True:
-    # Gestion des événements
+    clock.tick(60)
+    screen.fill(WHITE)
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
-                oiseau_vitesse_y = -5
 
-    # Déplacement de l'oiseau
-    oiseau_y += oiseau_vitesse_y
-    oiseau_vitesse_y += 0.2
+        if not game_over and event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+            gravity = jump_strength
 
-    # Déplacement des tuyaux
-    tuyau_x += tuyau_vitesse_x
-    if tuyau_x < -50:
-        tuyau_x = 300
-        tuyau_y = random.randint(100, 300)
-        score += 1
+        if game_over and event.type == pygame.KEYDOWN and event.key == pygame.K_r:
+            reset()
 
-    # Collision avec les tuyaux
-    if (oiseau_x + oiseau_largeur > tuyau_x and
-        oiseau_x < tuyau_x + tuyau_largeur and
-        oiseau_y < tuyau_y + tuyau_hauteur and
-        oiseau_y + oiseau_hauteur > tuyau_y):
-        print("Game over")
-        pygame.quit()
-        sys.exit()
+    if not game_over:
+        gravity += 0.5
+        bird.y += gravity
 
-    # Collision avec le sol
-    if oiseau_y + oiseau_hauteur > sol_y:
-        print("Game over")
-        pygame.quit()
-        sys.exit()
+        pipe_timer += 1
+        if pipe_timer > 90:
+            create_pipe()
+            pipe_timer = 0
 
-    # Dessin de la fenêtre
-    fenetre.fill(COULEUR_FOND)
-    pygame.draw.rect(fenetre, COULEUR_OISEAU, (oiseau_x, oiseau_y, oiseau_largeur, oiseau_hauteur))
-    pygame.draw.rect(fenetre, COULEUR_TUYAU, (tuyau_x, tuyau_y, tuyau_largeur, tuyau_hauteur))
-    pygame.draw.rect(fenetre, COULEUR_SOL, (sol_x, sol_y, sol_largeur, sol_hauteur))
+        for p in pipes:
+            p["rect"].x -= 4
 
-    # Affichage du score
-    score_text = font_score.render(str(score), True, COULEUR_SCORE)
-    fenetre.blit(score_text, (10, 10))
+        # Collision
+        for p in pipes:
+            if bird.colliderect(p["rect"]):
+                game_over = True
 
-    # Mise à jour de la fenêtre
-    pygame.display.flip()
-    pygame.time.Clock().tick(60)
+        if bird.top < 0 or bird.bottom > HEIGHT:
+            game_over = True
 
-    # Changement de niveau
-    if score >= 10:
-        tuyau_hauteur = niveaux[1]["tuyau_hauteur"]
-        tuyau_vitesse_x = niveaux[1]["tuyau_vitesse_x"]
-    elif score >= 20:
-        tuyau_hauteur = niveaux[2]["tuyau_hauteur"]
-        tuyau_vitesse_x = niveaux[2]["tuyau_vitesse_x"]
+        # Score
+        for p in pipes:
+            if not p["passed"] and p["rect"].x + PIPE_WIDTH < bird.x:
+                p["passed"] = True
+                score += 0.5  # 0.5 car chaque tuyau = 2 objets
+
+    draw()
