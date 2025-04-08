@@ -18,7 +18,7 @@ FONT = pygame.font.SysFont("Arial", 40)
 bg_img = pygame.image.load("images/background.png")
 bg_img = pygame.transform.scale(bg_img, (WIDTH, HEIGHT))
 
-bird_img = pygame.image.load("images/bird.png")
+bird_img = pygame.image.load("images/flappy_bird.png")
 bird_img = pygame.transform.scale(bird_img, (40, 40))
 
 pipe_img = pygame.image.load("images/pipe.png")
@@ -77,12 +77,12 @@ def create_pipe():
         "flipped": True,
         "passed": False
     })
-    pipes.append({
+    pipes.append({  
         "rect": pygame.Rect(WIDTH, height + PIPE_GAP, PIPE_WIDTH, 400),
         "surface": bottom_pipe,
         "flipped": False,
         "passed": False
-    })
+    }) 
 
 # Boucle principale
 reset()
