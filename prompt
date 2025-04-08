@@ -1,0 +1,47 @@
+Ecris moi en python un jeu de plateforme inspiré des graphismes de Mario bros dans lequel on peut se déplacer verticalement et horizontalement. 
+
+Ce jeu fait 13 blocs de haut et 24 blocs de large. le point (0;0) est tout en bas a gauche.
+
+Mario,le personnage, fait 1 bloc et peut sauter de 2 bloc de long et 2 bloc de haut
+
+On commence en bas a gauche au cordonnée (1;2), sur une plateforme carée de 2 blocs de cote .
+
+au  cordonnée (2;2) il y a un pic de 0.5 bloc de haut et 1 bloc de large
+
+au cordonnée (3;1) a (10;1) il y a de l eau qui touche le bord et qui fait 0.5 bloc de haut 
+
+au cordonnée (6;5) il y un bloc; suspendu a ce bloc il y a une liane de 1.5 bloc de longueur capable de se balancer
+
+au cordonnée (7;1) il y a un trampoline de taille 1 bloc 
+
+au cordonnée (4;2) il y a une plateforme d 1 bloc de large et 0.25 bloc de haut
+
+au cordonnée (9;5) a (15;6) il y a une plateforme de 2 bloc de haut et 7 bloc de large
+
+au cordonnée (10;6) il y a galoomba (un mechant) qui se deplace horizontalement de (10;6) a (13;6)
+
+au cordonnée (14;10), (15;7), (15.8), il y des blocs
+
+au cordonnée (5;10) a (4;9) il y une plateforme de 2 blocs de cote
+
+au cordonnée (14;10) et (5;10) repose une tyrolienne de 1 bloc de haut et 1 et 9 bloc de longueur
+
+au cordonnée (1;8) il y a un bloc avec un tuyau vert de 1 bloc dessus qui teleporte au cordonnée (12;3)
+
+au cordonnée (12;1) a (24;1) il y a des blocs 
+
+au cordonnée (12;2) il y a un tuyau vert 
+
+au cordonnée (22;2) il y a un canon de 2 bloc, ce canon tire des boulet de canon toutes les 3 secondes qui vont vers la gauche jusqu au cordonnée(12;2) puis qui explose
+
+au cordonnée (24;2) il y a un portail qui nous fait gagne
+
+lorsque l on gagne on a message victory qui apparait et lorque qu on perd un message game over apparait
+
+on meurt lorsque l on touche l eau, un mechant ou un pic ou un boulet de canon 
+
+le trampoline nous fait sauter jusqu au cordonnée (9;6)
+
+la liane nous fait atterir sur le trampoline 
+
+et la tyrolienne nous fait atterir au cordonnée (5;10)
