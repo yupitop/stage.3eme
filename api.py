@@ -1,35 +1,27 @@
+import json
 from flask import Flask, jsonify
-from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///manga.db"
-db = SQLAlchemy(app)
 
-class Manga(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
-    author = db.Column(db.String(100), nullable=False)
-    summary = db.Column(db.Text, nullable=False)
-    ranking = db.Column(db.Integer, nullable=False)
-    image = db.Column(db.String(100), nullable=False)
+# Chemin du fichier JSON
+json_file = 'top8_manga.json'
 
-@app.before_request
-def create_db():
-    db.create_all()
+# Lecture du fichier JSON
+with open(json_file, 'r') as f:
+    data = json.load(f)
 
-@app.route("/manga/<int:id>", methods=["GET"])
-def get_manga(id):
-    manga = Manga.query.get(id)
-    if manga is None:
-        return jsonify({"error": "Manga not found"}), 404
-    return jsonify({
-        "title": manga.title,
-        "author": manga.author,
-        "summary": manga.summary,
-        "ranking": manga.ranking,
-        "image": manga.image
-    })
+# Création d'une route pour renvoyer les données sous forme de JSON
+@app.route('/top8', methods=['GET'])
+def get_top8():
+    return jsonify(data)
 
-if __name__ == "__main__":
-    app.run(debug=True)
-    print("")
+# Création d'une route pour renvoyer un manga spécifique sous forme de JSON
+@app.route('/manga/<int:classement>', methods=['GET'])
+def get_manga(classement):
+    for manga in data:
+        if manga['classement'] == str(classement):
+            return jsonify(manga)
+    return jsonify({'error': 'Manga non trouvé'}), 404
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)
