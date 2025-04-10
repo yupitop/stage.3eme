@@ -1,0 +1,96 @@
+[ {
+    "classement": "",
+    "titre": "Naruto",
+    "auteur": "Masashi Kishimoto",
+    "resume": "Naruto Uzumaki est un jeune ninja qui rêve de devenir le leader de son village. Avec l'aide de ses amis Sakura et Sasuke, il doit affronter les défis de son village et protéger ses habitants contre les menaces extérieures.",
+    "miniature": "images/miniature_naruto.jpg",
+    "chapitres": 710,
+    "genres": ["Action", "Aventure", "Fantastique"],
+    "note": 8.5
+  },
+
+
+  {
+    "classement": "",
+    "titre": "Shingeki no Kyojin",
+    "auteur": "Hajime Isayama",
+    "resume": "Dans un monde où l'humanité est sur le point de disparaitre, les derniers survivants vivent dans une cité fortifiée pour se protéger des Titans, des créatures géantes et cannibales qui les attaquent sans raison apparente.",
+    "miniature": "images/miniature_snk.jpg",
+    "chapitres": 139,
+    "genres": ["Dark Fantasy", "Action", "Drame"],
+    "note": 9
+  },
+
+
+  {
+    "classement": "",
+    "titre": "Boruto: Naruto Next Generations",
+    "auteur": "Masashi Kishimoto, Ukyo Kodachi",
+    "resume": "Boruto Uzumaki, le fils de Naruto, est un jeune ninja qui rêve de devenir le leader de son village. Avec l'aide de ses amis Sarada et Mitsuki, il doit affronter les défis de son village et protéger ses habitants contre les menaces extérieures.",
+    "miniature": "images/miniature_boruto.jpg",
+    "chapitres": 100,
+    "genres": ["Action", "Aventure", "Fantastique"],
+    "note": 8
+    
+  },
+
+
+  {
+    "classement": "",
+    "titre": "Solo Leveling",
+    "auteur": "Chugong",
+    "resume": "Dans un monde où les humains ont développé des capacités magiques, Sung Jin-Woo est un chasseur de niveau E, le plus bas niveau possible. Mais après une expérience mystérieuse, il découvre qu'il a la capacité de se renforcer à un niveau incroyable.",
+    "miniature": "images/miniature_solo-leveling.jpg",
+    "chapitres": 179,
+    "genres": ["Fantasy", "Action", "Aventure"],
+    "note": 9
+  },
+
+
+  {
+    "classement": "",
+    "titre": "Haikyuu!!",
+    "auteur": "Haruichi Furudate",
+    "resume": "Shoyo Hinata est un jeune garçon qui rêve de devenir un grand joueur de volley-ball, malgré sa petite taille. Il rejoint l'équipe de volley-ball de son lycée et rencontre ses nouveaux coéquipiers, dont le talentueux Tobio Kageyama.",
+    "miniature": "images/miniature_haikyuu.jpg",
+    "chapitres": 402,
+    "genres": ["Shonen", "Sport", "Comédie"],
+    "note": 9
+  },
+
+
+  {
+    "classement": "",
+    "titre": "One Piece",
+    "auteur": "Eiichiro Oda",
+    "resume": "Monkey D. Luffy est un jeune garçon qui rêve de devenir le roi des pirates. Il est à la recherche du trésor ultime, le One Piece, qui lui permettra de réaliser son rêve.",
+    "miniature": "images/miniature_one-piece.jpg",
+    "chapitres": 1145,
+    "genres": ["Shonen", "Aventure", "Fantastique"],
+    "note": 9
+  },
+
+
+  {
+    "classement": "",
+    "titre": "Tokyo Revengers",
+    "auteur": "Ken Wakui",
+    "resume": "Takemichi Hanagaki est un jeune homme qui voyage dans le temps pour empêcher la mort de sa petite amie, Hinata Tachibana, et pour prendre sa revanche contre les Tokyo Manji Gang, une bande de délinquants qui a détruit sa vie.",
+    "miniature": "images/miniature_tokyo-revengers.jpg",
+    "chapitres": 278,
+    "genres": ["Shonen", "Action", "Drame"],
+    "note": 9
+  },
+
+  
+  {
+    "classement": "",
+    "titre": "Hunter x Hunter",
+    "auteur": "Yoshihiro Togashi",
+    "resume": "Gon Freecss est un jeune garçon qui rêve de devenir un Hunter, un titre prestigieux qui lui permettra de réaliser ses rêves et de découvrir les secrets de son père, Ging Freecss.",
+    "miniature": "images/miniature_hunterXhunter.jpg",
+    "chapitres": 410,
+    "genres": ["Shonen", "Aventure", "Fantastique"],
+    "note": 9
+  }
+]
