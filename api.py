@@ -13,7 +13,7 @@ class Manga(db.Model):
     ranking = db.Column(db.Integer, nullable=False)
     image = db.Column(db.String(100), nullable=False)
 
-@app.before_first_request
+@app.before_request
 def create_db():
     db.create_all()
 

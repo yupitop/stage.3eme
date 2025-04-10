@@ -5,7 +5,7 @@ import pygame
 pygame.init()
 
 
-player_img = pygame.image.load("images/petit_base.png")
+player_img = pygame.image.load("images/mario.png")
 player_img = pygame.transform.scale(player_img, (40, 40))
 
 
