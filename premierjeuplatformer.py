@@ -178,6 +178,6 @@ while running:
     bullets = [b for b in bullets if b.x > 12 * tile_size]
 
     draw()
-
+print()
 pygame.quit()
 sys.exit()
