@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top 8 des mangas</title>
+  <link rel="stylesheet" href="[https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">](https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">)
+</head>
+<body>
+  <div id="app">
+    <h1>Top 8 des mangas</h1>
+    <ul>
+      <li v-for="manga in mangas" :key="manga.classement">
+        <h2>{{ manga.titre }}</h2>
+        <p>Auteur : {{ manga.auteur }}</p>
+        <p>Classement : {{ manga.classement }}</p>
+        <p>Résumé : {{ manga.resume }}</p>
+        <img :src="manga.miniature" alt="Miniature">
+      </li>
+    </ul>
+  </div>
+
+  <script src="[https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>](https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>)
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        mangas: []
+      },
+      mounted() {
+        fetch('top8_manga.json')
+          .then(response => response.json())
+          .then(data => {
+            this.mangas = data;
+          });
+      }
+    });
+  </script>
+</body>
+</html>
