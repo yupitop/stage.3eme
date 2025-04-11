@@ -1,7 +1,7 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const mangadexOptions = {
-  target: 'https://api.mangadex.org/v2',
+  target: 'http://localhost:5000',
   changeOrigin: true,
   pathRewrite: {
     '^/api': '/'
