@@ -4,7 +4,7 @@ from flask import Flask, jsonify
 app = Flask(__name__)
 
 # Chemin du fichier JSON
-json_file = 'top8_manga.json'
+json_file = 'top8.manga/top8_manga.json'
 
 # Lecture du fichier JSON
 with open(json_file, 'r') as f:
@@ -21,6 +21,8 @@ def get_manga(classement):
     for manga in data:
         if manga['classement'] == str(classement):
             return jsonify(manga)
+        if str(classement) =='0':
+             return jsonify(data)
     return jsonify({'error': 'Manga non trouvé'}), 404
 
 if __name__ == '__main__':
